@@ -1,17 +1,64 @@
 -- Database Queries
 
 -- Find all customers with postal code 1010
-
+SELECT CustomerName FROM [Customers] WHERE PostalCode = 1010;
+--CustomerName
+--Cactus Comidas para llevar
+--Océano Atlántico Ltda.
+--Rancho grande
 -- Find the phone number for the supplier with the id 11
-
+SELECT Phone FROM [Suppliers] WHERE SupplierID = 11;
+--Phone
+--(010) 9984510
 -- List first 10 orders placed, sorted descending by the order date
-
+SELECT * FROM [Orders] ORDER BY OrderDate DESC LIMIT 10;
+--OrderID	CustomerID	EmployeeID	OrderDate	ShipperID
+--10443	66	8	1997-02-12	1
+--10442	20	3	1997-02-11	2
+--10440	71	4	1997-02-10	2
+--10441	55	3	1997-02-10	2
+--10439	51	6	1997-02-07	3
+--10438	79	3	1997-02-06	2
+--10436	7	3	1997-02-05	2
+--10437	87	8	1997-02-05	1
+--10435	16	8	1997-02-04	2
+--10433	60	3	1997-02-03	3
 -- Find all customers that live in London, Madrid, or Brazil
+SELECT * FROM [Customers] WHERE City = 'London' OR City ='Madrid' OR City='Brazil';
+--CustomerName
+--Around the Horn
+--Bólido Comidas preparadas
+--B's Beverages
+--Consolidated Holdings
+--Eastern Connection
+--FISSA Fabrica Inter. Salchichas S.A.
+--North/South
+--Romero y tomillo
+--Seven Seas Imports
 
 -- Add a customer record for "The Shire", the contact name is "Bilbo Baggins" the address is -"1 Hobbit-Hole" in "Bag End", postal code "111" and the country is "Middle Earth"
+INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country) VALUES ("The Shire", "Bilbo Baggins", "1 Hobbit-Hole", "Bag End", "111", "Middle Earth");
+--93	The Shire	Bilbo Baggins	1 Hobbit-Hole	Bag End	111	Middle Earth
 
 -- Update Bilbo Baggins record so that the postal code changes to "11122"
+UPDATE Customers SET PostalCode = "11122" WHERE CustomerID = 93;
+--93	The Shire	Bilbo Baggins	1 Hobbit-Hole	Bag End	11122	Middle Earth
 
 -- (Stretch) Find a query to discover how many different cities are stored in the Customers table. Repeats should not be double counted
-
+SELECT COUNT(DISTINCT City) FROM [Customers];
+--COUNT(DISTINCT City)
+--70
 -- (Stretch) Find all suppliers who have names longer than 20 characters. You can use `length(SupplierName)` to get the length of the name
+SELECT SupplierName FROM [Suppliers] WHERE length(SupplierName) > 20;
+--SupplierName
+--New Orleans Cajun Delights
+--Grandma Kelly's Homestead
+--Cooperativa de Quesos 'Las Cabras'
+--Specialty Biscuits, Ltd.
+--Refrescos Americanas LTDA
+--Heli Süßwaren GmbH & Co. KG
+--Plutzer Lebensmittelgroßmärkte AG
+--Nord-Ost-Fisch Handelsgesellschaft mbH
+--Formaggi Fortini s.r.l.
+--Aux joyeux ecclésiastiques
+--New England Seafood Cannery
